@@ -7,7 +7,7 @@ import torch.nn.functional as F
 # Defining the scale product function to get the final value of each attention head of a token
 def scaled_dot_product(q, k, v, mask = None):
     d_k = q.size()[-1]
-    scaled = torch.matmul(q, k.transpose(-1,-2))
+    scaled = torch.matmul(q, k.transpose(-1,-2)) / math.sqrt(d_k)
     if mask is not None:
         scaled += mask
     attention = F.softmax(scaled,dim=-1)

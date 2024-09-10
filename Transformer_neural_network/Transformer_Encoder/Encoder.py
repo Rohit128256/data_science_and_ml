@@ -31,7 +31,7 @@ class MultiheadAttention(nn.Module):
         qkv = qkv.permute(0,2,1,3)
         q, k, v = qkv.chunk(3, dim=-1)
         values, attention = scaled_dot_product(q, k, v, mask)
-        values.permute(0,2,1,3)
+        values = values.permute(0,2,1,3)
         values = values.reshape(batch_size,seq_len,self.num_head*self.d_head)
         out = self.linear_layer(values)
         return out

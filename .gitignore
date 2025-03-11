@@ -1,1 +1,3 @@
 *.pth
+DCGAN/generator_ckpt.pth
+DCGAN/discriminator_ckpt.pth
